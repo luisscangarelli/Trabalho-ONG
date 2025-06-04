@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'sua-chave-secreta-aqui'
+app.config['SECRET_KEY'] = ''
 
 # Configuração MySQL -
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://usuario:senha@localhost/nome_db'
