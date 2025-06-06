@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="margin-top: 100px; padding: 60px 0; background: #f8f9fa; min-height: calc(100vh - 100px);">
+    <div class="container">
+        <!-- Header do Projeto -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); padding: 40px; border-radius: 15px; color: white; text-align: center;">
+                    <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; color: white;">{{ projeto.nome }}</h1>
+                    <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 10px;">{{ projeto.descricao }}</p>
+                    <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 20px;">
+                        <span style="background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px; font-size: 14px;">
+                            <i class="fas fa-map-marker-alt" style="margin-right: 5px;"></i>{{ projeto.unidade }}
+                        </span>
+                        {% if projeto.idade_minima and projeto.idade_maxima %}
+                        <span style="background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px; font-size: 14px;">
+                            <i class="fas fa-users" style="margin-right: 5px;"></i>{{ projeto.idade_minima }} a {{ projeto.idade_maxima }} anos
+                        </span>
+                        {% endif %}
+                        <span style="background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 20px; font-size: 14px;">
+                            <i class="fas fa-calendar" style="margin-right: 5px;"></i>{{ projeto.status.title() }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Informações do Projeto -->
+            <div class="col-lg-8 mb-4">
+                <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h3 style="color: #1c2b38; margin-bottom: 25px;">Sobre o Projeto</h3>
+                    <p style="color: #666; line-height: 1.8; margin-bottom: 30px; font-size: 1.1rem;">
+                        {{ projeto.descricao }}
+                    </p>
+
+                    {% if projeto.nome == 'Creche Educacional' %}
+                    <h4 style="color: #1c2b38; margin-bottom: 20px;">O que oferecemos na Creche:</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i>
+                                    <span>Berçário I (4 meses a 1 ano)</span>
+                                </li>
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i>
+                                    <span>Berçário II (1 a 2 anos)</span>
+                                </li>
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i>
+                                    <span>Berçário III (2 a 3 anos)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i>
+                                    <span>Pré-escola I (3 a 4 anos)</span>
+                                </li>
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i>
+                                    <span>Pré-escola II (4 a 5 anos)</span>
+                                </li>
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-check-circle" style="color: #28a745; margin-right: 10px;"></i>
+                                    <span>Alimentação nutritiva</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <h4 style="color: #1c2b38; margin-bottom: 20px; margin-top: 30px;">Benefícios do Projeto:</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-star" style="color: #fbbc65; margin-right: 10px;"></i>
+                                    <span>Desenvolvimento integral</span>
+                                </li>
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-star" style="color: #fbbc65; margin-right: 10px;"></i>
+                                    <span>Ambiente seguro e acolhedor</span>
+                                </li>
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-star" style="color: #fbbc65; margin-right: 10px;"></i>
+                                    <span>Atividades pedagógicas</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-star" style="color: #fbbc65; margin-right: 10px;"></i>
+                                    <span>Profissionais qualificados</span>
+                                </li>
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-star" style="color: #fbbc65; margin-right: 10px;"></i>
+                                    <span>Inclusão social</span>
+                                </li>
+                                <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                                    <i class="fas fa-star" style="color: #fbbc65; margin-right: 10px;"></i>
+                                    <span>Apoio às famílias</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar com ações -->
+            <div class="col-lg-4">
+                <!-- Informações rápidas -->
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-bottom: 20px;">
+                    <h4 style="color: #1c2b38; margin-bottom: 20px;">Informações</h4>
+
+                    <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                        <strong style="color: #666; font-size: 14px;">Unidade:</strong>
+                        <p style="margin: 5px 0 0 0; color: #1c2b38;">{{ projeto.unidade }}</p>
+                    </div>
+
+                    {% if projeto.idade_minima and projeto.idade_maxima %}
+                    <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                        <strong style="color: #666; font-size: 14px;">Faixa Etária:</strong>
+                        <p style="margin: 5px 0 0 0; color: #1c2b38;">{{ projeto.idade_minima }} a {{ projeto.idade_maxima }} anos</p>
+                    </div>
+                    {% endif %}
+
+                    <div style="margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #f0f0f0;">
+                        <strong style="color: #666; font-size: 14px;">Vagas:</strong>
+                        {% if projeto.vagas_restantes > 0 %}
+                            <p style="margin: 5px 0 0 0; color: #28a745; font-weight: 600;">{{ projeto.vagas_restantes }} disponíveis</p>
+                        {% else %}
+                            <p style="margin: 5px 0 0 0; color: #dc3545; font-weight: 600;">Esgotadas</p>
+                        {% endif %}
+                    </div>
+
+                    {% if projeto.data_inicio %}
+                    <div style="margin-bottom: 15px;">
+                        <strong style="color: #666; font-size: 14px;">Início:</strong>
+                        <p style="margin: 5px 0 0 0; color: #1c2b38;">{{ projeto.data_inicio.strftime('%d/%m/%Y') }}</p>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Ações -->
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h4 style="color: #1c2b38; margin-bottom: 20px;">Inscreva-se</h4>
+
+                    {% if projeto.vagas_restantes > 0 %}
+                        {% if session.usuario_id %}
+                            <a href="{{ url_for('inscrever_projeto', projeto_id=projeto.id) }}"
+                               style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); color: white; padding: 15px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: block; text-align: center; margin-bottom: 15px;">
+                                <i class="fas fa-user-plus" style="margin-right: 8px;"></i>Inscrever-se Agora
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('cadastro') }}"
+                               style="background: #fbbc65; color: #1c1c1c; padding: 15px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: block; text-align: center; margin-bottom: 15px;">
+                                <i class="fas fa-user-plus" style="margin-right: 8px;"></i>Cadastre-se para se Inscrever
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 15px;">
+                            <i class="fas fa-exclamation-triangle" style="color: #ffc107; font-size: 1.5rem; margin-bottom: 10px;"></i>
+                            <p style="color: #666; margin: 0; font-weight: 600;">Vagas Esgotadas</p>
+                            <small style="color: #999;">Entre em contato para lista de espera</small>
+                        </div>
+                    {% endif %}
+
+                    <a href="{{ url_for('contato') }}"
+                       style="background: transparent; color: #1c2b38; border: 2px solid #1c2b38; padding: 12px 20px; border-radius: 8px; text-decoration: none; font-weight: 600; display: block; text-align: center; margin-bottom: 15px;">
+                        <i class="fas fa-envelope" style="margin-right: 8px;"></i>Tirar Dúvidas
+                    </a>
+
+                    <a href="{{ url_for('educacao') }}"
+                       style="color: #666; text-decoration: none; font-size: 14px; display: block; text-align: center;">
+                        ← Voltar para Projetos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

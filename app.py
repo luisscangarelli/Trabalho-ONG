@@ -17,6 +17,7 @@ db.init_app(app)
 @app.route('/')
 def index():
     """Página inicial - vai usar template do seu colega"""
+    # Buscar alguns dados para exibir na home
     projetos_ativos = Projeto.query.filter_by(status='ativo').limit(3).all()
     eventos_proximos = Evento.query.filter(
         Evento.data_evento >= datetime.now(),
@@ -32,27 +33,32 @@ def index():
 
 @app.route('/sobre')
 def sobre():
+    """Página Sobre Nós - baseada no design do Figma"""
     return render_template('sobre.html')
 
 
 @app.route('/educacao')
 def educacao():
+    """Página Educação (antiga Cursos) - foco na creche escola"""
     projetos_educacionais = Projeto.query.filter_by(status='ativo').all()
     return render_template('educacao.html', projetos=projetos_educacionais)
 
 
 @app.route('/servicos')
 def servicos():
+    """Página de Serviços oferecidos pela ONG"""
     return render_template('servicos.html')
 
 
 @app.route('/doacao')
 def doacao():
+    """Página de Doação - baseada no design do Figma"""
     return render_template('doacao.html')
 
 
 @app.route('/unidade/<nome>')
 def unidade_detalhe(nome):
+    """Página específica de cada unidade"""
     unidades_info = {
         'dende': {
             'nome': 'Unidade Dendê',
@@ -82,16 +88,18 @@ def unidade_detalhe(nome):
     return render_template('unidade.html', unidade=unidade)
 
 
-# === ROTAS EXISTENTES ===
+# === ROTAS EXISTENTES (mantidas) ===
 
 @app.route('/projetos')
 def projetos():
+    """Lista todos os projetos ativos"""
     projetos = Projeto.query.filter_by(status='ativo').all()
     return render_template('projetos.html', projetos=projetos)
 
 
 @app.route('/projeto/<int:id>')
 def projeto_detalhe(id):
+    """Detalhes de um projeto específico"""
     projeto = Projeto.query.get_or_404(id)
     return render_template('projeto_detalhe.html', projeto=projeto)
 
@@ -111,9 +119,11 @@ def login():
 
             flash(f'Bem-vindo(a), {usuario.nome}!', 'success')
 
+            # Redirecionar baseado no tipo de usuário
             if usuario.tipo_usuario == 'admin':
                 return redirect(url_for('admin_dashboard'))
             else:
+                # Usuário comum vai para o perfil ou página que estava tentando acessar
                 next_page = request.args.get('next')
                 return redirect(next_page) if next_page else redirect(url_for('perfil_usuario'))
         else:
@@ -131,6 +141,7 @@ def cadastro():
         senha = request.form['senha']
         confirma_senha = request.form['confirma_senha']
 
+        # Validações básicas
         if senha != confirma_senha:
             flash('Senhas não coincidem!', 'error')
             return render_template('cadastro.html')
@@ -171,6 +182,7 @@ def logout():
 
 @app.route('/perfil')
 def perfil_usuario():
+    """Área do usuário logado"""
     if 'usuario_id' not in session:
         flash('Faça login para acessar seu perfil!', 'warning')
         return redirect(url_for('login'))
@@ -187,6 +199,7 @@ def perfil_usuario():
 
 @app.route('/inscrever/<int:projeto_id>', methods=['GET', 'POST'])
 def inscrever_projeto(projeto_id):
+    """Inscrição em projeto específico"""
     if 'usuario_id' not in session:
         flash('Faça login para se inscrever!', 'warning')
         return redirect(url_for('login'))
@@ -224,6 +237,7 @@ def inscrever_projeto(projeto_id):
 
 @app.route('/voluntario', methods=['GET', 'POST'])
 def cadastro_voluntario():
+    """Cadastro como voluntário"""
     if 'usuario_id' not in session:
         flash('Faça login para se voluntariar!', 'warning')
         return redirect(url_for('login'))
@@ -261,6 +275,7 @@ def cadastro_voluntario():
 
 @app.route('/contato', methods=['GET', 'POST'])
 def contato():
+    """Formulário de contato"""
     if request.method == 'POST':
         contato = Contato(
             nome=request.form['nome'],
@@ -281,6 +296,7 @@ def contato():
 
 @app.route('/doacoes', methods=['GET', 'POST'])
 def doacoes():
+    """Página de doações com formulário"""
     if request.method == 'POST':
         doacao = Doacao(
             usuario_id=session.get('usuario_id'),
@@ -304,6 +320,7 @@ def doacoes():
 
 @app.route('/eventos')
 def eventos():
+    """Lista de eventos públicos"""
     eventos = Evento.query.filter(
         Evento.publico == True,
         Evento.data_evento >= datetime.now()
@@ -316,10 +333,12 @@ def eventos():
 
 @app.route('/admin')
 def admin_dashboard():
+    """Dashboard administrativo"""
     if session.get('usuario_tipo') != 'admin':
         flash('Acesso negado!', 'error')
         return redirect(url_for('index'))
 
+    # Estatísticas básicas
     stats = {
         'total_usuarios': Usuario.query.count(),
         'inscricoes_pendentes': Inscricao.query.filter_by(status='pendente').count(),
@@ -333,6 +352,7 @@ def admin_dashboard():
 
 @app.route('/admin/inscricoes')
 def admin_inscricoes():
+    """Gerenciar inscrições"""
     if session.get('usuario_tipo') != 'admin':
         flash('Acesso negado!', 'error')
         return redirect(url_for('index'))
@@ -343,6 +363,7 @@ def admin_inscricoes():
 
 @app.route('/admin/aprovar_inscricao/<int:id>')
 def aprovar_inscricao(id):
+    """Aprovar inscrição"""
     if session.get('usuario_tipo') != 'admin':
         return jsonify({'error': 'Acesso negado'}), 403
 
@@ -350,6 +371,7 @@ def aprovar_inscricao(id):
     inscricao.status = 'aprovada'
     inscricao.data_resposta = datetime.utcnow()
 
+    # Atualizar vagas do projeto
     projeto = inscricao.projeto
     projeto.vagas_ocupadas += 1
 
@@ -359,18 +381,23 @@ def aprovar_inscricao(id):
     return redirect(url_for('admin_inscricoes'))
 
 
+# Corrigir formulário de inscrição da home COM TURMA
 @app.route('/inscricao_rapida', methods=['POST'])
 def inscricao_rapida():
+    """Inscrição rápida do formulário da home"""
     if request.method == 'POST':
         nome = request.form['nome']
         telefone = request.form['telefone']
         email = request.form['email']
         unidade = request.form['unidade']
+        turma = request.form['turma']  # NOVO CAMPO
 
+        # Se usuário não estiver logado, redireciona para cadastro
         if 'usuario_id' not in session:
             flash('Faça login ou cadastre-se primeiro para se inscrever!', 'warning')
             return redirect(url_for('cadastro'))
 
+        # Buscar projeto da creche na unidade selecionada
         projeto = Projeto.query.filter_by(
             nome='Creche Educacional',
             unidade=unidade,
@@ -391,22 +418,24 @@ def inscricao_rapida():
             flash('Você já possui uma inscrição para esta unidade!', 'warning')
             return redirect(url_for('index'))
 
-        # Criar inscrição
+        # Criar inscrição COM INFO DA TURMA
         inscricao = Inscricao(
             usuario_id=session['usuario_id'],
             projeto_id=projeto.id,
-            observacoes=f"Inscrição via formulário da home - Telefone: {telefone}"
+            observacoes=f"Inscrição via formulário da home - Nome criança: {nome} - Telefone: {telefone} - Turma solicitada: {turma}"
         )
 
         db.session.add(inscricao)
         db.session.commit()
 
-        flash('Inscrição realizada com sucesso! Aguarde nosso contato.', 'success')
+        flash(f'Inscrição realizada com sucesso para {turma}! Aguarde nosso contato.', 'success')
         return redirect(url_for('index'))
 
 
+# Corrigir links dos botões do carrossel
 @app.route('/unidades')
 def unidades():
+    """Página listando todas as unidades"""
     unidades_info = {
         'dende': {
             'nome': 'Unidade Dendê',
@@ -447,6 +476,7 @@ def criar_tabelas():
     with app.app_context():
         db.create_all()
 
+        # Criar usuário admin padrão se não existir
         admin = Usuario.query.filter_by(email='admin@nacodes.com').first()
         if not admin:
             admin = Usuario(
@@ -457,6 +487,7 @@ def criar_tabelas():
             admin.set_senha('admin123')
             db.session.add(admin)
 
+        # Criar alguns projetos de exemplo
         if Projeto.query.count() == 0:
             projetos_exemplo = [
                 Projeto(

@@ -89,23 +89,36 @@
     </div>
 </div>
 
-<!-- Seção Inscreva-se -->
+<!-- Seção Inscreva-se COM CAMPO DE TURMA -->
 <section style="padding: 80px 0; background: white;">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6">
-                <h3 style="font-size: 2.2rem; font-weight: 700; color: #1c2b38; margin-bottom: 20px;">Inscreva-se</h3>
+                <h3 style="font-size: 2.2rem; font-weight: 700; color: #1c2b38; margin-bottom: 20px;">Inscreva-se na Creche</h3>
                 <p style="font-size: 1rem; line-height: 1.6; color: #333;">
                     Inscreva seu filho na creche do Núcleo de Ação Comunitária e Desenvolvimento Social (NACODES).
                     Desde 1998, promovemos educação, inclusão e cuidado com respeito e solidariedade.
                     Garanta uma formação acolhedora e cidadã para seu filho. Faça a inscrição e transforme o futuro dele!
                 </p>
+
+                <!-- Informações sobre as turmas -->
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 20px;">
+                    <h6 style="color: #1c2b38; margin-bottom: 10px; font-weight: 600;">💡 Nossas Turmas:</h6>
+                    <ul style="margin: 0; padding-left: 20px; color: #666; font-size: 14px;">
+                        <li><strong>Berçário I:</strong> 4 meses a 1 ano</li>
+                        <li><strong>Berçário II:</strong> 1 a 2 anos</li>
+                        <li><strong>Berçário III:</strong> 2 a 3 anos</li>
+                        <li><strong>Pré-escola I:</strong> 3 a 4 anos</li>
+                        <li><strong>Pré-escola II:</strong> 4 a 5 anos</li>
+                    </ul>
+                </div>
             </div>
             <div class="col-lg-6">
                 <form method="POST" action="{{ url_for('inscricao_rapida') }}" style="display: flex; flex-direction: column; gap: 15px; max-width: 350px;">
-                    <input type="text" name="nome" placeholder="Nome" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
-                    <input type="tel" name="telefone" placeholder="Telefone" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
-                    <input type="email" name="email" placeholder="E-mail" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
+                    <input type="text" name="nome" placeholder="Nome da criança" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
+                    <input type="tel" name="telefone" placeholder="Telefone do responsável" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
+                    <input type="email" name="email" placeholder="E-mail do responsável" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
+
                     <select name="unidade" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
                         <option disabled selected>Escolha a unidade</option>
                         <option value="Dendê">Dendê</option>
@@ -114,13 +127,24 @@
                         <option value="Maré">Maré</option>
                         <option value="Bancários">Bancários</option>
                     </select>
+
+                    <!-- NOVO CAMPO: TURMA/FAIXA ETÁRIA -->
+                    <select name="turma" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
+                        <option disabled selected>Escolha a turma (faixa etária)</option>
+                        <option value="Berçário I">Berçário I (4 meses a 1 ano)</option>
+                        <option value="Berçário II">Berçário II (1 a 2 anos)</option>
+                        <option value="Berçário III">Berçário III (2 a 3 anos)</option>
+                        <option value="Pré-escola I">Pré-escola I (3 a 4 anos)</option>
+                        <option value="Pré-escola II">Pré-escola II (4 a 5 anos)</option>
+                    </select>
+
                     <label style="font-size: 14px; font-family: 'Montserrat', sans-serif;">
-                        <input type="checkbox" required> Aceito os termos
+                        <input type="checkbox" required> Aceito os termos e condições
                     </label>
                     {% if session.usuario_id %}
-                        <button type="submit" style="background-color: #fbbc65; color: #1c1c1c; padding: 12px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; font-family: 'Montserrat', sans-serif;">Inscreva-se</button>
+                        <button type="submit" style="background-color: #fbbc65; color: #1c1c1c; padding: 12px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; font-family: 'Montserrat', sans-serif;">Inscrever na Creche</button>
                     {% else %}
-                        <button type="button" onclick="window.location.href='{{ url_for('cadastro') }}'" style="background-color: #fbbc65; color: #1c1c1c; padding: 12px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; font-family: 'Montserrat', sans-serif;">Cadastre-se para se inscrever</button>
+                        <button type="button" onclick="window.location.href='{{ url_for('cadastro') }}'" style="background-color: #fbbc65; color: #1c1c1c; padding: 12px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; font-family: 'Montserrat', sans-serif;">Cadastre-se para Inscrever</button>
                     {% endif %}
                 </form>
             </div>
