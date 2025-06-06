@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="min-height: 100vh; background: linear-gradient(135deg, #DF52B0, #fbbc65); display: flex; align-items: center; justify-content: center; padding: 20px; margin-top: -80px;">
+    <div style="background: white; padding: 50px; border-radius: 20px; box-shadow: 0 15px 50px rgba(0,0,0,0.2); max-width: 450px; width: 100%;">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="NACODES" style="height: 80px; margin-bottom: 20px;">
+            <h2 style="color: #1c2b38; font-weight: 700; font-size: 2.2rem; margin-bottom: 10px;">Login</h2>
+            <p style="color: #666; font-size: 1.1rem;">Acesse sua conta NACODES</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <div style="margin-bottom: 25px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #1c2b38; font-size: 14px;">Email</label>
+                <input type="email" name="email" style="width: 100%; padding: 16px; border: 2px solid #e9ecef; border-radius: 12px; font-family: 'Montserrat', sans-serif; font-size: 16px; transition: all 0.3s; background: #f8f9fa;" required>
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 600; color: #1c2b38; font-size: 14px;">Senha</label>
+                <input type="password" name="senha" style="width: 100%; padding: 16px; border: 2px solid #e9ecef; border-radius: 12px; font-family: 'Montserrat', sans-serif; font-size: 16px; transition: all 0.3s; background: #f8f9fa;" required>
+            </div>
+
+            <button type="submit" style="width: 100%; background: linear-gradient(135deg, #DF52B0, #e91e63); color: white; padding: 16px; border: none; border-radius: 12px; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s; margin-bottom: 25px; box-shadow: 0 5px 15px rgba(223, 82, 176, 0.3);">
+                <span style="display: inline-block; transition: transform 0.3s;">🚀 Entrar</span>
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-bottom: 30px;">
+            <p style="color: #666; margin-bottom: 15px;">Não tem conta?</p>
+            <a href="{{ url_for('cadastro') }}" style="color: #DF52B0; text-decoration: none; font-weight: 600; font-size: 16px; padding: 10px 20px; border: 2px solid #DF52B0; border-radius: 8px; transition: all 0.3s;">Cadastre-se aqui</a>
+        </div>
+
+        <div style="border-top: 1px solid #eee; padding-top: 25px;">
+            <div style="background: linear-gradient(135deg, #f8f9fa, #e9ecef); padding: 20px; border-radius: 12px; text-align: center;">
+                <h6 style="color: #495057; margin-bottom: 15px; font-size: 14px; font-weight: 600;">🔑 Login de Teste:</h6>
+                <div style="background: white; padding: 15px; border-radius: 8px; font-size: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                        <strong>Email:</strong>
+                        <span style="color: #DF52B0;">admin@nacodes.com</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <strong>Senha:</strong>
+                        <span style="color: #DF52B0;">admin123</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+input:focus {
+    border-color: #DF52B0 !important;
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(223, 82, 176, 0.1) !important;
+    background: white !important;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #FFCB80, #ff9800) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 25px rgba(223, 82, 176, 0.4) !important;
+}
+
+button:hover span {
+    transform: scale(1.05) !important;
+}
+
+a[href*="cadastro"]:hover {
+    background: #DF52B0 !important;
+    color: white !important;
+    transform: translateY(-1px) !important;
+}
+</style>
+{% endblock %}

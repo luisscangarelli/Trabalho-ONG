@@ -1,0 +1,206 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Banner Contato -->
+<div class="banner-principal">
+    <div class="banner-content">
+        <h1>ENTRE EM <span class="title-pink">CONTATO</span></h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Estamos aqui para ajudar! Entre em contato conosco e tire suas dúvidas sobre nossos projetos e serviços.</p>
+        <a href="#formulario-contato" class="btn-voluntarie">FALAR CONOSCO</a>
+    </div>
+</div>
+
+<!-- Informações de Contato -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Fale Conosco</h2>
+                <p style="font-size: 1.1rem; color: #666;">Escolha a melhor forma de entrar em contato</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- WhatsApp -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div style="background: linear-gradient(135deg, #25d366 0%, #128c7e 100%); padding: 40px 30px; border-radius: 20px; text-align: center; color: white; height: 100%;">
+                    <i class="fab fa-whatsapp" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 15px; color: white;">WhatsApp</h4>
+                    <p style="margin-bottom: 20px; opacity: 0.9;">(21) 97654-4567</p>
+                    <a href="https://wa.me/5521976544567" target="_blank" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; font-family: 'Montserrat', sans-serif;">
+                        Conversar Agora
+                    </a>
+                </div>
+            </div>
+
+            <!-- Telefone -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); padding: 40px 30px; border-radius: 20px; text-align: center; color: white; height: 100%;">
+                    <i class="fas fa-phone" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 15px; color: white;">Telefone</h4>
+                    <p style="margin-bottom: 20px; opacity: 0.9;">(21) 97654-4567</p>
+                    <a href="tel:+5521976544567" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; font-family: 'Montserrat', sans-serif;">
+                        Ligar Agora
+                    </a>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div style="background: linear-gradient(135deg, #fbbc65 0%, #FFCB80 100%); padding: 40px 30px; border-radius: 20px; text-align: center; color: #1c1c1c; height: 100%;">
+                    <i class="fas fa-envelope" style="font-size: 3rem; margin-bottom: 20px;"></i>
+                    <h4 style="margin-bottom: 15px;">Email</h4>
+                    <p style="margin-bottom: 20px;">contato@nacodes.com.br</p>
+                    <a href="mailto:contato@nacodes.com.br" style="background: #1c1c1c; color: white; border: none; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: 600; font-family: 'Montserrat', sans-serif;">
+                        Enviar Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Formulário de Contato -->
+<section id="formulario-contato" style="padding: 80px 0; background: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div style="background: white; padding: 50px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 style="font-size: 2rem; font-weight: 700; color: #1c2b38; margin-bottom: 15px; text-align: center;">Envie sua Mensagem</h3>
+                    <p style="color: #666; text-align: center; margin-bottom: 40px;">Preencha o formulário e responderemos o mais breve possível</p>
+
+                    <form method="POST" action="{{ url_for('contato') }}">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Nome Completo *</label>
+                                <input type="text" name="nome" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Email *</label>
+                                <input type="email" name="email" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Telefone</label>
+                                <input type="tel" name="telefone" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Assunto *</label>
+                                <select name="assunto" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;" required>
+                                    <option value="">Selecione o assunto</option>
+                                    <option value="Informações sobre a Creche">Informações sobre a Creche</option>
+                                    <option value="Inscrições em Cursos">Inscrições em Cursos</option>
+                                    <option value="Trabalho Voluntário">Trabalho Voluntário</option>
+                                    <option value="Doações">Doações</option>
+                                    <option value="Parcerias">Parcerias</option>
+                                    <option value="Reclamações">Reclamações</option>
+                                    <option value="Outros">Outros</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Mensagem *</label>
+                            <textarea name="mensagem" rows="6" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif; resize: vertical;" placeholder="Descreva sua dúvida, sugestão ou solicitação..." required></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-weight: 600; font-size: 1.1rem; cursor: pointer; font-family: 'Montserrat', sans-serif;">
+                                ENVIAR MENSAGEM
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Localização -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Nossa Localização</h2>
+                <p style="font-size: 1.1rem; color: #666;">Estamos localizados no coração das comunidades que atendemos</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <div style="background: #f8f9fa; padding: 40px; border-radius: 15px;">
+                    <h4 style="color: #1c2b38; margin-bottom: 20px;"><i class="fas fa-map-marker-alt" style="color: #DF52B0; margin-right: 10px;"></i>Endereço Principal</h4>
+                    <p style="color: #666; font-size: 1.1rem; margin-bottom: 20px;">
+                        <strong>Estrada do Campinho</strong><br>
+                        Campo Grande, Rio de Janeiro - RJ<br>
+                        CEP: 23000-000
+                    </p>
+
+                    <h5 style="color: #1c2b38; margin-bottom: 15px;">Horário de Atendimento:</h5>
+                    <ul style="list-style: none; padding: 0; color: #666;">
+                        <li style="margin-bottom: 8px;"><i class="fas fa-clock" style="color: #DF52B0; margin-right: 8px;"></i> Segunda a Sexta: 7:00 às 17:00</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-clock" style="color: #DF52B0; margin-right: 8px;"></i> Sábado: 8:00 às 12:00</li>
+                        <li><i class="fas fa-clock" style="color: #DF52B0; margin-right: 8px;"></i> Domingo: Fechado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <!-- Mapa placeholder -->
+                <div style="height: 300px; background: #e9ecef; border-radius: 15px; display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                    <i class="fas fa-map" style="font-size: 3rem; color: #adb5bd; margin-bottom: 15px;"></i>
+                    <p style="color: #6c757d; text-align: center; margin: 0;">
+                        <strong>Mapa da Localização</strong><br>
+                        <small>Em breve: mapa interativo</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Rápido -->
+<section style="padding: 80px 0; background: linear-gradient(135deg, #3b50bd 0%, #4361ee 100%);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: white; margin-bottom: 25px;">Perguntas Frequentes</h2>
+                <p style="font-size: 1.1rem; color: white; opacity: 0.9;">Talvez sua dúvida já esteja respondida aqui</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px;">
+                    <h5 style="color: white; margin-bottom: 15px;"><i class="fas fa-question-circle" style="margin-right: 10px;"></i>Como inscrever meu filho na creche?</h5>
+                    <p style="color: white; opacity: 0.9; margin: 0;">Faça seu cadastro no site, preencha o formulário de inscrição e aguarde nosso contato para agendar uma visita.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px;">
+                    <h5 style="color: white; margin-bottom: 15px;"><i class="fas fa-question-circle" style="margin-right: 10px;"></i>Os cursos são gratuitos?</h5>
+                    <p style="color: white; opacity: 0.9; margin: 0;">Sim! Todos os nossos cursos e atividades são 100% gratuitos para a comunidade.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px;">
+                    <h5 style="color: white; margin-bottom: 15px;"><i class="fas fa-question-circle" style="margin-right: 10px;"></i>Como posso fazer doações?</h5>
+                    <p style="color: white; opacity: 0.9; margin: 0;">Acesse nossa página de doações e escolha entre PIX, transferência bancária ou doação de materiais.</p>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px;">
+                    <h5 style="color: white; margin-bottom: 15px;"><i class="fas fa-question-circle" style="margin-right: 10px;"></i>Posso visitar as unidades?</h5>
+                    <p style="color: white; opacity: 0.9; margin: 0;">Sim! Entre em contato para agendar uma visita e conhecer nosso trabalho de perto.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

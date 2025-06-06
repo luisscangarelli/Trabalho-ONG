@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Banner Serviços -->
+<div class="banner-principal">
+    <div class="banner-content">
+        <h1>NOSSOS <span class="title-pink">SERVIÇOS</span></h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Conheça todos os serviços e atividades que oferecemos para transformar vidas nas comunidades do Rio de Janeiro.</p>
+        <a href="{{ url_for('contato') }}" class="btn-voluntarie">ENTRE EM CONTATO</a>
+    </div>
+</div>
+
+<!-- Seção Principais Serviços -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Principais Serviços</h2>
+                <p style="font-size: 1.1rem; color: #666;">Atuamos em diferentes frentes para atender às necessidades das comunidades</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Educação Infantil -->
+            <div class="col-lg-6 mb-5">
+                <div style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); border-radius: 20px; padding: 40px; color: white; height: 100%;">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="background: rgba(255,255,255,0.2); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+                            <i class="fas fa-child" style="font-size: 2.5rem; color: white;"></i>
+                        </div>
+                        <h3 style="font-size: 2rem; font-weight: 700; margin: 0;">Educação Infantil</h3>
+                    </div>
+                    <p style="font-size: 1.1rem; margin-bottom: 25px; opacity: 0.9; line-height: 1.6;">
+                        Creche escola para crianças de 2 a 5 anos com proposta pedagógica inclusiva, atividades lúdicas e acompanhamento nutricional.
+                    </p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Educação de 2 a 5 anos</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Alimentação balanceada</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Atividades pedagógicas</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Acompanhamento psicológico</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Qualificação Profissional -->
+            <div class="col-lg-6 mb-5">
+                <div style="background: linear-gradient(135deg, #fbbc65 0%, #FFCB80 100%); border-radius: 20px; padding: 40px; color: #1c1c1c; height: 100%;">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="background: rgba(255,255,255,0.3); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+                            <i class="fas fa-laptop" style="font-size: 2.5rem; color: #1c1c1c;"></i>
+                        </div>
+                        <h3 style="font-size: 2rem; font-weight: 700; margin: 0;">Qualificação Profissional</h3>
+                    </div>
+                    <p style="font-size: 1.1rem; margin-bottom: 25px; line-height: 1.6;">
+                        Cursos profissionalizantes para jovens e adultos, preparando para o mercado de trabalho e promovendo autonomia financeira.
+                    </p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(28,28,28,0.7);"></i>
+                            <span>Informática básica e avançada</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(28,28,28,0.7);"></i>
+                            <span>Cabeleireiro e estética</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(28,28,28,0.7);"></i>
+                            <span>Artesanato e costura</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(28,28,28,0.7);"></i>
+                            <span>Empreendedorismo</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Desenvolvimento Social -->
+            <div class="col-lg-6 mb-5">
+                <div style="background: linear-gradient(135deg, #87ceeb 0%, #6fa8dc 100%); border-radius: 20px; padding: 40px; color: white; height: 100%;">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="background: rgba(255,255,255,0.2); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+                            <i class="fas fa-users" style="font-size: 2.5rem; color: white;"></i>
+                        </div>
+                        <h3 style="font-size: 2rem; font-weight: 700; margin: 0;">Desenvolvimento Social</h3>
+                    </div>
+                    <p style="font-size: 1.1rem; margin-bottom: 25px; opacity: 0.9; line-height: 1.6;">
+                        Projetos sociais que fortalecem vínculos familiares, promovem cidadania e apoiam famílias em situação de vulnerabilidade.
+                    </p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Assistência às famílias</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Orientação psicossocial</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Programas de inclusão</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Campanhas solidárias</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Cultura e Arte -->
+            <div class="col-lg-6 mb-5">
+                <div style="background: linear-gradient(135deg, #3b50bd 0%, #4361ee 100%); border-radius: 20px; padding: 40px; color: white; height: 100%;">
+                    <div style="display: flex; align-items: center; margin-bottom: 20px;">
+                        <div style="background: rgba(255,255,255,0.2); width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px;">
+                            <i class="fas fa-palette" style="font-size: 2.5rem; color: white;"></i>
+                        </div>
+                        <h3 style="font-size: 2rem; font-weight: 700; margin: 0;">Cultura e Arte</h3>
+                    </div>
+                    <p style="font-size: 1.1rem; margin-bottom: 25px; opacity: 0.9; line-height: 1.6;">
+                        Atividades culturais e artísticas que estimulam criatividade, preservam tradições e promovem expressão pessoal.
+                    </p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Oficinas de arte e pintura</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Teatro e contação de histórias</span>
+                        </li>
+                        <li style="margin-bottom: 10px; display: flex; align-items: center;">
+                            <i class="fas fa-check-circle" style="margin-right: 10px; color: rgba(255,255,255,0.8);"></i>
+                            <span>Eventos culturais</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Atividades por Unidade -->
+<section style="padding: 80px 0; background: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Atividades por Unidade</h2>
+                <p style="font-size: 1.1rem; color: #666;">Cada unidade oferece serviços específicos para sua comunidade</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Unidade Dendê -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); height: 100%;">
+                    <h4 style="color: #DF52B0; font-weight: 700; margin-bottom: 20px; text-align: center;">Unidade Dendê</h4>
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <i class="fas fa-map-marker-alt" style="color: #DF52B0; font-size: 1.5rem; margin-bottom: 10px;"></i>
+                        <p style="color: #666; margin: 0;">Morro do Dendê</p>
+                    </div>
+                    <h5 style="color: #1c2b38; margin-bottom: 15px;">Atividades oferecidas:</h5>
+                    <ul style="list-style: none; padding: 0; color: #666;">
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #DF52B0; margin-right: 8px;"></i> Aula de judô</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #DF52B0; margin-right: 8px;"></i> Aula de ballet</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #DF52B0; margin-right: 8px;"></i> Brinquedoteca</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #DF52B0; margin-right: 8px;"></i> Psicomotricidade</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #DF52B0; margin-right: 8px;"></i> Ambiente estruturado</li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="{{ url_for('unidade_detalhe', nome='dende') }}" style="background: #DF52B0; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600;">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unidade Jacarezinho -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); height: 100%;">
+                    <h4 style="color: #fbbc65; font-weight: 700; margin-bottom: 20px; text-align: center;">Unidade Jacarezinho</h4>
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <i class="fas fa-map-marker-alt" style="color: #fbbc65; font-size: 1.5rem; margin-bottom: 10px;"></i>
+                        <p style="color: #666; margin: 0;">Jacarezinho (Jacaré)</p>
+                    </div>
+                    <h5 style="color: #1c2b38; margin-bottom: 15px;">Atividades oferecidas:</h5>
+                    <ul style="list-style: none; padding: 0; color: #666;">
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #fbbc65; margin-right: 8px;"></i> Curso de informática</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #fbbc65; margin-right: 8px;"></i> Educação infantil</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #fbbc65; margin-right: 8px;"></i> Reforço escolar</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #fbbc65; margin-right: 8px;"></i> Atividades recreativas</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #fbbc65; margin-right: 8px;"></i> Orientação familiar</li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="{{ url_for('unidade_detalhe', nome='jacarezinho') }}" style="background: #fbbc65; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600;">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Unidade Tuiuti -->
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); height: 100%;">
+                    <h4 style="color: #87ceeb; font-weight: 700; margin-bottom: 20px; text-align: center;">Unidade Tuiuti</h4>
+                    <div style="text-align: center; margin-bottom: 25px;">
+                        <i class="fas fa-map-marker-alt" style="color: #87ceeb; font-size: 1.5rem; margin-bottom: 10px;"></i>
+                        <p style="color: #666; margin: 0;">Morro do Tuiuti (Benfica)</p>
+                    </div>
+                    <h5 style="color: #1c2b38; margin-bottom: 15px;">Atividades oferecidas:</h5>
+                    <ul style="list-style: none; padding: 0; color: #666;">
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #87ceeb; margin-right: 8px;"></i> Oficina de arte</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #87ceeb; margin-right: 8px;"></i> Creche</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #87ceeb; margin-right: 8px;"></i> Atividades culturais</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #87ceeb; margin-right: 8px;"></i> Apoio pedagógico</li>
+                        <li style="margin-bottom: 8px;"><i class="fas fa-check" style="color: #87ceeb; margin-right: 8px;"></i> Música e dança</li>
+                    </ul>
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="{{ url_for('unidade_detalhe', nome='tuiuti') }}" style="background: #87ceeb; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600;">
+                            Saiba Mais
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Horários de Funcionamento -->
+<section style="padding: 80px 0; background: linear-gradient(135deg, #1c2b38 0%, #2c3e50 100%);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: white; margin-bottom: 25px;">Horários de Funcionamento</h2>
+                <p style="font-size: 1.1rem; color: white; opacity: 0.9;">Confira os horários de atendimento de nossas unidades</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div style="background: rgba(255,255,255,0.1); border-radius: 20px; padding: 40px;">
+                    <div class="row text-center">
+                        <div class="col-md-6 mb-4">
+                            <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; height: 100%;">
+                                <i class="fas fa-clock" style="font-size: 2.5rem; color: #DF52B0; margin-bottom: 15px;"></i>
+                                <h4 style="color: white; margin-bottom: 15px;">Creche Escola</h4>
+                                <p style="color: white; opacity: 0.9; margin-bottom: 10px;"><strong>Segunda a Sexta:</strong></p>
+                                <p style="color: white; opacity: 0.9; margin-bottom: 10px;">7:00 às 17:00</p>
+                                <p style="color: white; opacity: 0.9;"><strong>Período integral disponível</strong></p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-4">
+                            <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px; height: 100%;">
+                                <i class="fas fa-graduation-cap" style="font-size: 2.5rem; color: #fbbc65; margin-bottom: 15px;"></i>
+                                <h4 style="color: white; margin-bottom: 15px;">Cursos e Oficinas</h4>
+                                <p style="color: white; opacity: 0.9; margin-bottom: 10px;"><strong>Segunda a Sábado:</strong></p>
+                                <p style="color: white; opacity: 0.9; margin-bottom: 10px;">8:00 às 18:00</p>
+                                <p style="color: white; opacity: 0.9;"><strong>Horários flexíveis</strong></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <p style="color: white; opacity: 0.8; margin-bottom: 0;">
+                            <i class="fas fa-info-circle" style="margin-right: 8px;"></i>
+                            Para informações específicas sobre horários de cada atividade, entre em contato conosco
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Precisa de Mais Informações?</h2>
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 40px;">
+                    Nossa equipe está pronta para atendê-lo e esclarecer todas as suas dúvidas sobre nossos serviços.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="{{ url_for('contato') }}" style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+                        Entre em Contato
+                    </a>
+                    <a href="https://wa.me/5521976544567" target="_blank" style="background: #25d366; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+                        <i class="fab fa-whatsapp" style="margin-right: 8px;"></i>WhatsApp
+                    </a>
+                    <a href="{{ url_for('educacao') }}" style="background: transparent; color: #1c2b38; border: 2px solid #1c2b38; padding: 13px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+                        Ver Projetos
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

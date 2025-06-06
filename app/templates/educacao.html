@@ -1,0 +1,322 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Banner Educação -->
+<div class="banner-principal">
+    <div class="banner-content">
+        <h1>EDUCAÇÃO <span class="title-pink">TRANSFORMADORA</span></h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Promovemos educação infantil de qualidade, cursos profissionalizantes e atividades culturais que transformam vidas e constroem futuros.</p>
+        <a href="#inscricoes" class="btn-voluntarie">INSCREVA-SE</a>
+    </div>
+</div>
+
+<!-- Seção Nossos Projetos -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Nossos Projetos Educacionais</h2>
+                <p style="font-size: 1.1rem; color: #666;">Conheça as oportunidades educacionais que oferecemos nas comunidades</p>
+            </div>
+        </div>
+
+        <div class="row">
+            {% if projetos %}
+                {% for projeto in projetos %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background: white; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); overflow: hidden; height: 100%; transition: transform 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <!-- Imagem do projeto -->
+                        <div style="height: 200px; background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); position: relative; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-graduation-cap" style="font-size: 3rem; color: white;"></i>
+                            <div style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 20px; color: white; font-size: 12px; font-weight: 600;">
+                                {{ projeto.unidade }}
+                            </div>
+                        </div>
+
+                        <!-- Conteúdo do card -->
+                        <div style="padding: 25px;">
+                            <h4 style="font-size: 1.4rem; font-weight: 700; color: #1c2b38; margin-bottom: 15px;">{{ projeto.nome }}</h4>
+                            <p style="color: #666; margin-bottom: 20px; line-height: 1.6;">{{ projeto.descricao }}</p>
+
+                            <!-- Informações do projeto -->
+                            <div style="margin-bottom: 20px;">
+                                {% if projeto.idade_minima and projeto.idade_maxima %}
+                                <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                    <i class="fas fa-users" style="color: #DF52B0; margin-right: 8px; width: 16px;"></i>
+                                    <span style="font-size: 14px; color: #666;">{{ projeto.idade_minima }} a {{ projeto.idade_maxima }} anos</span>
+                                </div>
+                                {% endif %}
+
+                                <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                    <i class="fas fa-map-marker-alt" style="color: #DF52B0; margin-right: 8px; width: 16px;"></i>
+                                    <span style="font-size: 14px; color: #666;">{{ projeto.unidade }}</span>
+                                </div>
+
+                                {% if projeto.vagas_restantes > 0 %}
+                                <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                    <i class="fas fa-check-circle" style="color: #28a745; margin-right: 8px; width: 16px;"></i>
+                                    <span style="font-size: 14px; color: #28a745; font-weight: 600;">{{ projeto.vagas_restantes }} vagas disponíveis</span>
+                                </div>
+                                {% else %}
+                                <div style="display: flex; align-items: center; margin-bottom: 8px;">
+                                    <i class="fas fa-exclamation-circle" style="color: #dc3545; margin-right: 8px; width: 16px;"></i>
+                                    <span style="font-size: 14px; color: #dc3545; font-weight: 600;">Vagas esgotadas</span>
+                                </div>
+                                {% endif %}
+
+                                {% if projeto.data_inicio %}
+                                <div style="display: flex; align-items: center;">
+                                    <i class="fas fa-calendar" style="color: #DF52B0; margin-right: 8px; width: 16px;"></i>
+                                    <span style="font-size: 14px; color: #666;">Início: {{ projeto.data_inicio.strftime('%d/%m/%Y') }}</span>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Botões de ação -->
+                            <div style="display: flex; gap: 10px;">
+                                <a href="{{ url_for('projeto_detalhe', id=projeto.id) }}" style="flex: 1; background: #f8f9fa; color: #333; padding: 10px; border-radius: 6px; text-decoration: none; text-align: center; font-weight: 600; font-size: 14px; border: 2px solid #e0e0e0; transition: all 0.3s ease;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+                                    Ver Detalhes
+                                </a>
+                                {% if projeto.vagas_restantes > 0 %}
+                                <a href="{{ url_for('inscrever_projeto', projeto_id=projeto.id) }}" style="flex: 1; background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); color: white; padding: 10px; border-radius: 6px; text-decoration: none; text-align: center; font-weight: 600; font-size: 14px; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                                    Inscrever-se
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center">
+                    <div style="padding: 60px 20px; background: #f8f9fa; border-radius: 15px;">
+                        <i class="fas fa-graduation-cap" style="font-size: 4rem; color: #ddd; margin-bottom: 20px;"></i>
+                        <h4 style="color: #666; margin-bottom: 15px;">Nenhum projeto disponível no momento</h4>
+                        <p style="color: #999;">Em breve teremos novos projetos educacionais. Entre em contato para mais informações.</p>
+                        <a href="{{ url_for('contato') }}" class="btn" style="background-color: #DF52B0; color: white; padding: 12px 25px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 15px; display: inline-block;">
+                            Entrar em Contato
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Seção Creche Escola -->
+<section style="padding: 80px 0; background: linear-gradient(135deg, #fbbc65 0%, #FFCB80 100%);">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Creche Escola NACODES</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #333; margin-bottom: 20px;">
+                    Nossa creche escola atende crianças de 2 a 5 anos, oferecendo educação infantil de qualidade com proposta pedagógica inclusiva. Promovemos o desenvolvimento integral através de atividades lúdicas, educativas e culturais.
+                </p>
+
+                <div style="margin-bottom: 30px;">
+                    <h4 style="color: #1c2b38; margin-bottom: 15px;">O que oferecemos:</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 8px; display: flex; align-items: center;">
+                            <i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i>
+                            <span>Educação infantil para crianças de 2 a 5 anos</span>
+                        </li>
+                        <li style="margin-bottom: 8px; display: flex; align-items: center;">
+                            <i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i>
+                            <span>Atividades lúdicas e pedagógicas</span>
+                        </li>
+                        <li style="margin-bottom: 8px; display: flex; align-items: center;">
+                            <i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i>
+                            <span>Alimentação nutritiva e balanceada</span>
+                        </li>
+                        <li style="margin-bottom: 8px; display: flex; align-items: center;">
+                            <i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i>
+                            <span>Acompanhamento psicopedagógico</span>
+                        </li>
+                        <li style="margin-bottom: 8px; display: flex; align-items: center;">
+                            <i class="fas fa-check" style="color: #28a745; margin-right: 10px;"></i>
+                            <span>Atividades culturais e artísticas</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <a href="#inscricoes" style="background-color: #1c2b38; color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; display: inline-block;">
+                    Inscrever na Creche
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <div style="height: 400px; border-radius: 15px; background-image: url('{{ url_for('static', filename='images/creche-criancas.jpg') }}'); background-size: cover; background-position: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2);"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Cursos Profissionalizantes -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Cursos Profissionalizantes</h2>
+                <p style="font-size: 1.1rem; color: #666;">Capacitação profissional para jovens e adultos das comunidades</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div style="text-align: center; padding: 30px; background: #f8f9fa; border-radius: 15px; height: 100%;">
+                    <div style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-laptop" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h4 style="color: #1c2b38; margin-bottom: 15px;">Informática Básica</h4>
+                    <p style="color: #666; margin-bottom: 20px;">Curso de informática básica, incluindo Windows, Word, Excel e navegação na internet.</p>
+                    <ul style="list-style: none; padding: 0; text-align: left; color: #666; font-size: 14px;">
+                        <li style="margin-bottom: 5px;"><i class="fas fa-clock" style="color: #DF52B0; margin-right: 8px;"></i> 3 meses</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-users" style="color: #DF52B0; margin-right: 8px;"></i> 14 a 25 anos</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-certificate" style="color: #DF52B0; margin-right: 8px;"></i> Certificado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div style="text-align: center; padding: 30px; background: #f8f9fa; border-radius: 15px; height: 100%;">
+                    <div style="background: linear-gradient(135deg, #fbbc65 0%, #FFCB80 100%); width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-cut" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h4 style="color: #1c2b38; margin-bottom: 15px;">Cabeleireiro</h4>
+                    <p style="color: #666; margin-bottom: 20px;">Curso profissionalizante de cabeleireiro com técnicas modernas e práticas no mercado.</p>
+                    <ul style="list-style: none; padding: 0; text-align: left; color: #666; font-size: 14px;">
+                        <li style="margin-bottom: 5px;"><i class="fas fa-clock" style="color: #fbbc65; margin-right: 8px;"></i> 6 meses</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-users" style="color: #fbbc65; margin-right: 8px;"></i> 16+ anos</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-certificate" style="color: #fbbc65; margin-right: 8px;"></i> Certificado</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div style="text-align: center; padding: 30px; background: #f8f9fa; border-radius: 15px; height: 100%;">
+                    <div style="background: linear-gradient(135deg, #87ceeb 0%, #6fa8dc 100%); width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-palette" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h4 style="color: #1c2b38; margin-bottom: 15px;">Oficina de Arte</h4>
+                    <p style="color: #666; margin-bottom: 20px;">Desenvolvimento de habilidades artísticas através de pintura, desenho e artesanato.</p>
+                    <ul style="list-style: none; padding: 0; text-align: left; color: #666; font-size: 14px;">
+                        <li style="margin-bottom: 5px;"><i class="fas fa-clock" style="color: #87ceeb; margin-right: 8px;"></i> 4 meses</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-users" style="color: #87ceeb; margin-right: 8px;"></i> 8 a 16 anos</li>
+                        <li style="margin-bottom: 5px;"><i class="fas fa-certificate" style="color: #87ceeb; margin-right: 8px;"></i> Certificado</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Inscrições -->
+<section id="inscricoes" style="padding: 80px 0; background: linear-gradient(135deg, #3b50bd 0%, #4361ee 100%);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: white; margin-bottom: 25px;">Como se Inscrever</h2>
+                <p style="font-size: 1.1rem; color: white; opacity: 0.9; margin-bottom: 40px;">
+                    Faça parte da família NACODES! Siga os passos abaixo para se inscrever em nossos projetos educacionais.
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 text-center mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; height: 100%;">
+                    <div style="background: #DF52B0; width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 24px;">1</div>
+                    <h4 style="color: white; margin-bottom: 15px;">Cadastre-se</h4>
+                    <p style="color: white; opacity: 0.9;">Crie uma conta em nosso site para acessar as inscrições.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 text-center mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; height: 100%;">
+                    <div style="background: #fbbc65; width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 24px;">2</div>
+                    <h4 style="color: white; margin-bottom: 15px;">Escolha o Projeto</h4>
+                    <p style="color: white; opacity: 0.9;">Selecione o projeto educacional que mais se adequa ao seu perfil.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4 text-center mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; height: 100%;">
+                    <div style="background: #87ceeb; width: 60px; height: 60px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 24px;">3</div>
+                    <h4 style="color: white; margin-bottom: 15px;">Aguarde Aprovação</h4>
+                    <p style="color: white; opacity: 0.9;">Nossa equipe analisará sua inscrição e entrará em contato.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                {% if session.usuario_id %}
+                    <a href="{{ url_for('projetos') }}" style="background: white; color: #3b50bd; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; display: inline-block; margin-right: 15px;">
+                        Ver Todos os Projetos
+                    </a>
+                {% else %}
+                    <a href="{{ url_for('cadastro') }}" style="background: white; color: #3b50bd; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; display: inline-block; margin-right: 15px;">
+                        Criar Conta
+                    </a>
+                {% endif %}
+                <a href="{{ url_for('contato') }}" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 13px 28px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem; display: inline-block;">
+                    Tirar Dúvidas
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Depoimentos -->
+<section style="padding: 80px 0; background: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">O que Dizem Nossos Alunos</h2>
+                <p style="font-size: 1.1rem; color: #666;">Depoimentos de quem já passou por nossos projetos educacionais</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-center; height: 100%;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: #DF52B0; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <p style="color: #666; font-style: italic; margin-bottom: 20px; line-height: 1.6;">
+                        "O curso de informática me deu a oportunidade de conseguir meu primeiro emprego. Muito obrigada, NACODES!"
+                    </p>
+                    <h5 style="color: #1c2b38; margin-bottom: 5px;">Maria Silva</h5>
+                    <small style="color: #DF52B0; font-weight: 600;">Ex-aluna do Curso de Informática</small>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-center; height: 100%;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: #fbbc65; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <p style="color: #666; font-style: italic; margin-bottom: 20px; line-height: 1.6;">
+                        "Minha filha está na creche há 2 anos e o desenvolvimento dela é incrível. Equipe maravilhosa!"
+                    </p>
+                    <h5 style="color: #1c2b38; margin-bottom: 5px;">Ana Paula</h5>
+                    <small style="color: #fbbc65; font-weight: 600;">Mãe de aluna da Creche</small>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-center; height: 100%;">
+                    <div style="width: 80px; height: 80px; border-radius: 50%; background: #87ceeb; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-user" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <p style="color: #666; font-style: italic; margin-bottom: 20px; line-height: 1.6;">
+                        "A oficina de arte despertou meu talento artístico. Hoje vendo meus trabalhos e sustento minha família."
+                    </p>
+                    <h5 style="color: #1c2b38; margin-bottom: 5px;">João Carlos</h5>
+                    <small style="color: #87ceeb; font-weight: 600;">Ex-aluno da Oficina de Arte</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

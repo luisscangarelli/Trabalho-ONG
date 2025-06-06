@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="margin-top: 100px; padding: 40px 0; background: #f8f9fa; min-height: calc(100vh - 100px);">
+    <div class="container">
+        <!-- Header do Perfil -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); padding: 30px; border-radius: 15px; color: white;">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; color: white;">Olá, {{ usuario.nome }}!</h1>
+                            <p style="opacity: 0.9; margin-bottom: 10px;">Bem-vindo ao seu perfil no NACODES</p>
+                            <small style="opacity: 0.8;">Membro desde {{ usuario.criado_em.strftime('%d/%m/%Y') if usuario.criado_em else 'N/A' }}</small>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div style="background: rgba(255,255,255,0.2); width: 100px; height: 100px; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user" style="font-size: 3rem; color: white;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu de navegação do perfil -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <nav style="display: flex; gap: 30px; flex-wrap: wrap; justify-content: center;">
+                        <a href="#meus-dados" style="color: #DF52B0; text-decoration: none; font-weight: 600; padding: 8px 0; border-bottom: 2px solid #DF52B0;">
+                            <i class="fas fa-user" style="margin-right: 8px;"></i>Meus Dados
+                        </a>
+                        <a href="#inscricoes" style="color: #666; text-decoration: none; font-weight: 600; padding: 8px 0;">
+                            <i class="fas fa-clipboard-list" style="margin-right: 8px;"></i>Minhas Inscrições
+                        </a>
+                        <a href="#doacoes" style="color: #666; text-decoration: none; font-weight: 600; padding: 8px 0;">
+                            <i class="fas fa-heart" style="margin-right: 8px;"></i>Minhas Doações
+                        </a>
+                        <a href="#voluntario" style="color: #666; text-decoration: none; font-weight: 600; padding: 8px 0;">
+                            <i class="fas fa-hands-helping" style="margin-right: 8px;"></i>Voluntariado
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Meus Dados -->
+            <div class="col-lg-4 mb-4">
+                <div id="meus-dados" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h4 style="color: #1c2b38; margin-bottom: 20px;">
+                        <i class="fas fa-user" style="color: #DF52B0; margin-right: 10px;"></i>Meus Dados
+                    </h4>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: 600; color: #666; font-size: 14px;">Nome Completo:</label>
+                        <p style="color: #333; margin: 5px 0 0 0;">{{ usuario.nome }}</p>
+                    </div>
+
+                    <div style="margin-bottom: 15px;">
+                        <label style="font-weight: 600; color: #666; font-size: 14px;">Email:</label>
+                        <p style="color: #333; margin: 5px 0 0 0;">{{ usuario.email }}</p>
+                    </div>
+
+                    <div style="margin-bottom: 20px;">
+                        <label style="font-weight: 600; color: #666; font-size: 14px;">Telefone:</label>
+                        <p style="color: #333; margin: 5px 0 0 0;">{{ usuario.telefone or 'Não informado' }}</p>
+                    </div>
+
+                    <button onclick="editarPerfil()" style="background: #DF52B0; color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; width: 100%;">
+                        Editar Dados
+                    </button>
+                </div>
+            </div>
+
+            <!-- Minhas Inscrições -->
+            <div class="col-lg-8 mb-4">
+                <div id="inscricoes" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h4 style="color: #1c2b38; margin-bottom: 20px;">
+                        <i class="fas fa-clipboard-list" style="color: #fbbc65; margin-right: 10px;"></i>Minhas Inscrições
+                    </h4>
+
+                    {% if inscricoes %}
+                        {% for inscricao in inscricoes %}
+                        <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px; margin-bottom: 15px;">
+                            <div class="row align-items-center">
+                                <div class="col-md-6">
+                                    <h6 style="color: #1c2b38; margin-bottom: 5px;">{{ inscricao.projeto.nome if inscricao.projeto else 'Projeto não encontrado' }}</h6>
+                                    <p style="color: #666; font-size: 14px; margin-bottom: 5px;">
+                                        <i class="fas fa-map-marker-alt" style="margin-right: 5px;"></i>
+                                        {{ inscricao.projeto.unidade if inscricao.projeto else 'N/A' }}
+                                    </p>
+                                    <p style="color: #666; font-size: 14px; margin: 0;">
+                                        <i class="fas fa-calendar" style="margin-right: 5px;"></i>
+                                        Inscrito em {{ inscricao.data_inscricao.strftime('%d/%m/%Y') if inscricao.data_inscricao else 'N/A' }}
+                                    </p>
+                                </div>
+                                <div class="col-md-3">
+                                    {% if inscricao.status == 'pendente' %}
+                                        <span style="background: #ffc107; color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+                                            <i class="fas fa-clock" style="margin-right: 5px;"></i>Pendente
+                                        </span>
+                                    {% elif inscricao.status == 'aprovada' %}
+                                        <span style="background: #28a745; color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+                                            <i class="fas fa-check" style="margin-right: 5px;"></i>Aprovada
+                                        </span>
+                                    {% else %}
+                                        <span style="background: #dc3545; color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;">
+                                            <i class="fas fa-times" style="margin-right: 5px;"></i>Rejeitada
+                                        </span>
+                                    {% endif %}
+                                </div>
+                                <div class="col-md-3 text-end">
+                                    {% if inscricao.projeto %}
+                                        <a href="{{ url_for('projeto_detalhe', id=inscricao.projeto.id) }}" style="color: #DF52B0; text-decoration: none; font-size: 14px;">
+                                            Ver Projeto →
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div style="text-align: center; padding: 40px 20px;">
+                            <i class="fas fa-clipboard-list" style="font-size: 3rem; color: #ddd; margin-bottom: 15px;"></i>
+                            <h6 style="color: #666; margin-bottom: 15px;">Nenhuma inscrição encontrada</h6>
+                            <a href="{{ url_for('educacao') }}" style="background: #DF52B0; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600;">
+                                Ver Projetos Disponíveis
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Minhas Doações -->
+            <div class="col-lg-6 mb-4">
+                <div id="doacoes" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h4 style="color: #1c2b38; margin-bottom: 20px;">
+                        <i class="fas fa-heart" style="color: #87ceeb; margin-right: 10px;"></i>Minhas Doações
+                    </h4>
+
+                    {% if doacoes %}
+                        {% for doacao in doacoes %}
+                        <div style="border: 1px solid #e0e0e0; border-radius: 10px; padding: 15px; margin-bottom: 10px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <h6 style="color: #1c2b38; margin-bottom: 5px;">
+                                        {% if doacao.tipo_doacao == 'dinheiro' %}
+                                            R$ {{ "%.2f"|format(doacao.valor) if doacao.valor else '0.00' }}
+                                        {% else %}
+                                            {{ doacao.tipo_doacao.title() }}
+                                        {% endif %}
+                                    </h6>
+                                    <p style="color: #666; font-size: 14px; margin-bottom: 5px;">{{ doacao.projeto_destino or 'Geral' }}</p>
+                                    <p style="color: #666; font-size: 12px; margin: 0;">{{ doacao.data_doacao.strftime('%d/%m/%Y') if doacao.data_doacao else 'N/A' }}</p>
+                                </div>
+                                <span style="background: #28a745; color: white; padding: 3px 8px; border-radius: 15px; font-size: 11px;">
+                                    {{ doacao.status.title() }}
+                                </span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div style="text-align: center; padding: 30px 20px;">
+                            <i class="fas fa-heart" style="font-size: 2.5rem; color: #ddd; margin-bottom: 15px;"></i>
+                            <h6 style="color: #666; margin-bottom: 15px;">Nenhuma doação ainda</h6>
+                            <a href="{{ url_for('doacao') }}" style="background: #87ceeb; color: white; padding: 8px 16px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">
+                                Fazer Doação
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Status Voluntário -->
+            <div class="col-lg-6 mb-4">
+                <div id="voluntario" style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h4 style="color: #1c2b38; margin-bottom: 20px;">
+                        <i class="fas fa-hands-helping" style="color: #3b50bd; margin-right: 10px;"></i>Voluntariado
+                    </h4>
+
+                    {% if usuario.voluntario_info and usuario.voluntario_info.ativo %}
+                        <div style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); padding: 20px; border-radius: 10px; color: white; margin-bottom: 15px;">
+                            <h6 style="margin-bottom: 10px; color: white;">
+                                <i class="fas fa-check-circle" style="margin-right: 8px;"></i>Você é um Voluntário Ativo!
+                            </h6>
+                            <p style="margin: 0; font-size: 14px; opacity: 0.9;">Obrigado por fazer parte da nossa equipe!</p>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="font-weight: 600; color: #666; font-size: 14px;">Área de Interesse:</label>
+                            <p style="color: #333; margin: 5px 0 0 0;">{{ usuario.voluntario_info.areas_interesse or 'Não informado' }}</p>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                            <label style="font-weight: 600; color: #666; font-size: 14px;">Disponibilidade:</label>
+                            <p style="color: #333; margin: 5px 0 0 0;">{{ usuario.voluntario_info.disponibilidade or 'Não informado' }}</p>
+                        </div>
+
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-weight: 600; color: #666; font-size: 14px;">Unidade Preferência:</label>
+                            <p style="color: #333; margin: 5px 0 0 0;">{{ usuario.voluntario_info.unidade_preferencia or 'Sem preferência' }}</p>
+                        </div>
+
+                        <a href="{{ url_for('cadastro_voluntario') }}" style="background: #3b50bd; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px; width: 100%; display: block; text-align: center;">
+                            Atualizar Dados
+                        </a>
+                    {% else %}
+                        <div style="text-align: center; padding: 30px 20px;">
+                            <i class="fas fa-hands-helping" style="font-size: 2.5rem; color: #ddd; margin-bottom: 15px;"></i>
+                            <h6 style="color: #666; margin-bottom: 15px;">Você ainda não é voluntário</h6>
+                            <p style="color: #999; font-size: 14px; margin-bottom: 20px;">Faça parte da nossa equipe e ajude a transformar vidas!</p>
+                            <a href="{{ url_for('cadastro_voluntario') }}" style="background: #3b50bd; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px;">
+                                Quero ser Voluntário
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Ações Rápidas -->
+        <div class="row">
+            <div class="col-12">
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h4 style="color: #1c2b38; margin-bottom: 20px;">Ações Rápidas</h4>
+
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <a href="{{ url_for('educacao') }}" style="background: #f8f9fa; border: 1px solid #e0e0e0; padding: 20px; border-radius: 10px; text-decoration: none; color: inherit; display: block; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+                                <i class="fas fa-graduation-cap" style="font-size: 2rem; color: #DF52B0; margin-bottom: 10px;"></i>
+                                <h6 style="color: #1c2b38; margin-bottom: 5px;">Ver Projetos</h6>
+                                <p style="color: #666; font-size: 12px; margin: 0;">Conhecer novos cursos</p>
+                            </a>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <a href="{{ url_for('doacao') }}" style="background: #f8f9fa; border: 1px solid #e0e0e0; padding: 20px; border-radius: 10px; text-decoration: none; color: inherit; display: block; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+                                <i class="fas fa-heart" style="font-size: 2rem; color: #fbbc65; margin-bottom: 10px;"></i>
+                                <h6 style="color: #1c2b38; margin-bottom: 5px;">Fazer Doação</h6>
+                                <p style="color: #666; font-size: 12px; margin: 0;">Contribuir com a ONG</p>
+                            </a>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <a href="{{ url_for('cadastro_voluntario') }}" style="background: #f8f9fa; border: 1px solid #e0e0e0; padding: 20px; border-radius: 10px; text-decoration: none; color: inherit; display: block; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+                                <i class="fas fa-hands-helping" style="font-size: 2rem; color: #87ceeb; margin-bottom: 10px;"></i>
+                                <h6 style="color: #1c2b38; margin-bottom: 5px;">Voluntariar-se</h6>
+                                <p style="color: #666; font-size: 12px; margin: 0;">Ajudar a comunidade</p>
+                            </a>
+                        </div>
+
+                        <div class="col-md-3 mb-3">
+                            <a href="{{ url_for('contato') }}" style="background: #f8f9fa; border: 1px solid #e0e0e0; padding: 20px; border-radius: 10px; text-decoration: none; color: inherit; display: block; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
+                                <i class="fas fa-envelope" style="font-size: 2rem; color: #3b50bd; margin-bottom: 10px;"></i>
+                                <h6 style="color: #1c2b38; margin-bottom: 5px;">Contato</h6>
+                                <p style="color: #666; font-size: 12px; margin: 0;">Tirar dúvidas</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function editarPerfil() {
+    alert('Funcionalidade de edição em desenvolvimento. Entre em contato conosco para alterar seus dados.');
+}
+
+// Navegação suave entre seções
+document.addEventListener('DOMContentLoaded', function() {
+    const links = document.querySelectorAll('nav a[href^="#"]');
+
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            // Remove active class from all links
+            links.forEach(l => {
+                l.style.color = '#666';
+                l.style.borderBottom = 'none';
+            });
+
+            // Add active class to clicked link
+            this.style.color = '#DF52B0';
+            this.style.borderBottom = '2px solid #DF52B0';
+
+            // Smooth scroll to section
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+</script>
+
+{% endblock %}

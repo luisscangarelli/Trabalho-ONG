@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Banner Doação -->
+<div class="banner-principal">
+    <div class="banner-content">
+        <h1>FAÇA <span class="title-pink">PARTE</span></h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Sua doação transforma vidas! Ajude o NACODES a continuar promovendo educação, inclusão e cuidado com respeito e solidariedade nas comunidades do Rio de Janeiro.</p>
+        <a href="#formas-doacao" class="btn-voluntarie">DOAR AGORA</a>
+    </div>
+</div>
+
+<!-- Seção com ondas decorativas -->
+<div style="background: white; position: relative;">
+    <!-- Ondas decorativas superiores -->
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 60px; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none"><path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" fill="%23DF52B0"></path></svg>') no-repeat; background-size: cover;"></div>
+
+    <!-- Seção Formas de Doação -->
+    <section id="formas-doacao" style="padding: 120px 0 80px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Formas de Doação</h2>
+                    <p style="font-size: 1.1rem; color: #666;">Escolha a forma que preferir para nos ajudar a transformar vidas</p>
+                </div>
+            </div>
+
+            <!-- Cards de doação igual ao Figma -->
+            <div class="row justify-content-center">
+                <!-- Card PIX -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); padding: 40px 30px; border-radius: 20px; text-align: center; color: white; height: 450px; display: flex; flex-direction: column; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; color: white;">PIX</h3>
+                            <p style="font-size: 1.1rem; margin-bottom: 25px; opacity: 0.9;">Chave: (21) 98765-4567</p>
+                        </div>
+
+                        <!-- QR Code (placeholder) -->
+                        <div style="background: white; padding: 20px; border-radius: 15px; margin: 20px 0;">
+                            <div style="width: 150px; height: 150px; background: #333; margin: 0 auto; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-qrcode" style="font-size: 4rem; color: white;"></i>
+                            </div>
+                        </div>
+
+                        <button onclick="copiarPix()" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; width: 100%;">
+                            COPIAR CHAVE PIX
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card TED -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background: linear-gradient(135deg, #fbbc65 0%, #FFCB80 100%); padding: 40px 30px; border-radius: 20px; text-align: center; color: #1c1c1c; height: 450px; display: flex; flex-direction: column; justify-content: center;">
+                        <h3 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 30px;">TED</h3>
+
+                        <div style="text-align: left; background: rgba(255,255,255,0.3); padding: 25px; border-radius: 15px; margin-bottom: 25px;">
+                            <p style="margin-bottom: 8px;"><strong>Titular:</strong> NACODES</p>
+                            <p style="margin-bottom: 8px;"><strong>Banco:</strong> Banco do Brasil</p>
+                            <p style="margin-bottom: 8px;"><strong>Agência:</strong> 1234-5</p>
+                            <p style="margin-bottom: 8px;"><strong>Conta:</strong> 12345-6</p>
+                            <p style="margin-bottom: 0;"><strong>Tipo:</strong> Conta Corrente</p>
+                        </div>
+
+                        <button onclick="copiarDadosTed()" style="background: #1c1c1c; color: white; border: none; padding: 12px 25px; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; width: 100%;">
+                            COPIAR DADOS
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Card Outros -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div style="background: linear-gradient(135deg, #87ceeb 0%, #6fa8dc 100%); padding: 40px 30px; border-radius: 20px; text-align: center; color: white; height: 450px; display: flex; flex-direction: column; justify-content: center;">
+                        <h3 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px;">OUTROS</h3>
+
+                        <div style="margin-bottom: 25px;">
+                            <p style="font-size: 1.1rem; margin-bottom: 15px; opacity: 0.9;">Entre em contato conosco para outras formas de doações ou ajudas.</p>
+                        </div>
+
+                        <div style="margin-bottom: 25px;">
+                            <p style="margin-bottom: 10px;"><i class="fab fa-whatsapp"></i> WhatsApp</p>
+                            <p style="margin-bottom: 10px;"><strong>(21) 97654-4567</strong></p>
+                        </div>
+
+                        <a href="https://wa.me/5521976544567" target="_blank" style="background: rgba(255,255,255,0.2); color: white; border: 2px solid white; padding: 12px 25px; border-radius: 8px; font-weight: 600; text-decoration: none; font-family: 'Montserrat', sans-serif; display: block;">
+                            FALAR NO WHATSAPP
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Seção Formulário de Doação -->
+<section style="padding: 80px 0; background: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div style="background: white; padding: 50px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    <h3 style="font-size: 2rem; font-weight: 700; color: #1c2b38; margin-bottom: 15px; text-align: center;">Registrar Doação</h3>
+                    <p style="color: #666; text-align: center; margin-bottom: 40px;">Preencha o formulário para que possamos acompanhar e agradecer sua contribuição</p>
+
+                    <form method="POST" action="{{ url_for('doacoes') }}">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Nome Completo *</label>
+                                <input type="text" name="nome_doador" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Email *</label>
+                                <input type="email" name="email_doador" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Telefone</label>
+                                <input type="tel" name="telefone_doador" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Tipo de Doação *</label>
+                                <select name="tipo_doacao" id="tipoDoacao" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;" required onchange="toggleValor()">
+                                    <option value="">Selecione o tipo</option>
+                                    <option value="dinheiro">Doação em Dinheiro</option>
+                                    <option value="material">Doação de Materiais</option>
+                                    <option value="alimento">Doação de Alimentos</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3" id="valorField" style="display: none;">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Valor (R$)</label>
+                                <input type="number" name="valor" step="0.01" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;" placeholder="0,00">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Projeto Destino</label>
+                                <select name="projeto_destino" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif;">
+                                    <option value="Geral">Geral (onde mais precisar)</option>
+                                    <option value="Creche Educacional">Creche Educacional</option>
+                                    <option value="Qualificação Profissional">Qualificação Profissional</option>
+                                    <option value="Cultura e Arte">Cultura e Arte</option>
+                                    <option value="Desenvolvimento Social">Desenvolvimento Social</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label style="font-weight: 600; margin-bottom: 8px; color: #333;">Descrição/Observações</label>
+                            <textarea name="descricao" rows="4" class="form-control" style="padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; font-family: 'Montserrat', sans-serif; resize: vertical;" placeholder="Descreva os materiais doados ou deixe uma mensagem..."></textarea>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); color: white; border: none; padding: 15px 40px; border-radius: 8px; font-weight: 600; font-size: 1.1rem; cursor: pointer; font-family: 'Montserrat', sans-serif;">
+                                REGISTRAR DOAÇÃO
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Impacto das Doações -->
+<section style="padding: 80px 0; background: linear-gradient(135deg, #3b50bd 0%, #4361ee 100%);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: white; margin-bottom: 25px;">O Impacto da Sua Doação</h2>
+                <p style="font-size: 1.1rem; color: white; opacity: 0.9;">Veja como sua contribuição transforma vidas em nossas comunidades</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 text-center mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; height: 100%;">
+                    <div style="background: #DF52B0; width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-child" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h4 style="color: white; margin-bottom: 15px;">R$ 50</h4>
+                    <p style="color: white; opacity: 0.9;">Garante material escolar para 1 criança por 1 mês</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; height: 100%;">
+                    <div style="background: #fbbc65; width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-utensils" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h4 style="color: white; margin-bottom: 15px;">R$ 100</h4>
+                    <p style="color: white; opacity: 0.9;">Oferece alimentação nutritiva para 5 crianças por 1 dia</p>
+                </div>
+            </div>
+            <div class="col-md-4 text-center mb-4">
+                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; height: 100%;">
+                    <div style="background: #87ceeb; width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-graduation-cap" style="font-size: 2rem; color: white;"></i>
+                    </div>
+                    <h4 style="color: white; margin-bottom: 15px;">R$ 200</h4>
+                    <p style="color: white; opacity: 0.9;">Custeia curso profissionalizante para 1 jovem</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function copiarPix() {
+    const chavePix = "(21) 98765-4567";
+    navigator.clipboard.writeText(chavePix).then(() => {
+        alert("Chave PIX copiada! " + chavePix);
+    });
+}
+
+function copiarDadosTed() {
+    const dadosTed = `Titular: NACODES
+Banco: Banco do Brasil
+Agência: 1234-5
+Conta: 12345-6
+Tipo: Conta Corrente`;
+
+    navigator.clipboard.writeText(dadosTed).then(() => {
+        alert("Dados bancários copiados!");
+    });
+}
+
+function toggleValor() {
+    const tipoDoacao = document.getElementById('tipoDoacao').value;
+    const valorField = document.getElementById('valorField');
+
+    if (tipoDoacao === 'dinheiro') {
+        valorField.style.display = 'block';
+        valorField.querySelector('input').required = true;
+    } else {
+        valorField.style.display = 'none';
+        valorField.querySelector('input').required = false;
+    }
+}
+</script>
+
+{% endblock %}

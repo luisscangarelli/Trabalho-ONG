@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Banner da Unidade -->
+<div class="banner-principal">
+    <div class="banner-content">
+        <h1>{{ unidade.nome.upper() }}</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">{{ unidade.descricao }}</p>
+        <a href="{{ url_for('contato') }}" class="btn-voluntarie">ENTRE EM CONTATO</a>
+    </div>
+</div>
+
+<!-- Informações da Unidade -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">{{ unidade.nome }}</h2>
+                <p style="font-size: 1.2rem; line-height: 1.8; color: #333; margin-bottom: 40px;">
+                    {{ unidade.descricao }}
+                </p>
+
+                <!-- Endereço -->
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 15px; margin-bottom: 40px;">
+                    <i class="fas fa-map-marker-alt" style="color: #DF52B0; font-size: 1.5rem; margin-right: 10px;"></i>
+                    <strong style="color: #1c2b38;">{{ unidade.endereco }}</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Serviços oferecidos -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <h3 style="font-size: 2rem; font-weight: 700; color: #1c2b38; margin-bottom: 30px; text-align: center;">Nosso Espaço</h3>
+                <div style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); padding: 40px; border-radius: 20px; color: white;">
+                    <h4 style="color: white; margin-bottom: 20px; text-align: center;">Atividades e Serviços:</h4>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                                {% for servico in unidade.servicos %}
+                                <li style="display: flex; align-items: center; background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px;">
+                                    <i class="fas fa-check-circle" style="color: rgba(255,255,255,0.9); margin-right: 12px; font-size: 1.2rem;"></i>
+                                    <span style="font-size: 1rem;">{{ servico }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Seção Como Participar -->
+<section style="padding: 80px 0; background: #f8f9fa;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h3 style="font-size: 2rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Como Participar</h3>
+                <p style="font-size: 1.1rem; color: #666; margin-bottom: 40px;">
+                    Interessado em participar das atividades desta unidade? Entre em contato conosco!
+                </p>
+
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <a href="{{ url_for('educacao') }}" style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); color: white; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+                        Ver Projetos
+                    </a>
+                    <a href="{{ url_for('contato') }}" style="background: #fbbc65; color: #1c1c1c; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">
+                        Entre em Contato
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Informações de Contato -->
+<section style="padding: 80px 0; background: linear-gradient(135deg, #3b50bd 0%, #4361ee 100%);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h3 style="font-size: 2rem; font-weight: 700; color: white; margin-bottom: 25px;">Informações de Contato</h3>
+                <p style="font-size: 1.1rem; color: white; opacity: 0.9; margin-bottom: 40px;">
+                    Fale conosco para mais informações sobre esta unidade
+                </p>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-4 mb-3">
+                        <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px;">
+                            <i class="fas fa-phone" style="font-size: 2rem; color: white; margin-bottom: 15px;"></i>
+                            <h5 style="color: white; margin-bottom: 10px;">Telefone</h5>
+                            <p style="color: white; opacity: 0.9; margin: 0;">(21) 97654-4567</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px;">
+                            <i class="fas fa-envelope" style="font-size: 2rem; color: white; margin-bottom: 15px;"></i>
+                            <h5 style="color: white; margin-bottom: 10px;">Email</h5>
+                            <p style="color: white; opacity: 0.9; margin: 0;">contato@nacodes.com.br</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 15px;">
+                            <i class="fab fa-whatsapp" style="font-size: 2rem; color: white; margin-bottom: 15px;"></i>
+                            <h5 style="color: white; margin-bottom: 10px;">WhatsApp</h5>
+                            <a href="https://wa.me/5521976544567" target="_blank" style="color: white; opacity: 0.9; text-decoration: none;">
+                                Conversar agora
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Outras Unidades -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h3 style="font-size: 2rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Conheça Nossas Outras Unidades</h3>
+                <p style="color: #666;">O NACODES atua em 5 comunidades do Rio de Janeiro</p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-2 text-center mb-3">
+                <a href="{{ url_for('unidade_detalhe', nome='dende') }}" style="text-decoration: none; color: #DF52B0; font-weight: 600;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                    Dendê
+                </a>
+            </div>
+            <div class="col-md-2 text-center mb-3">
+                <a href="{{ url_for('unidade_detalhe', nome='jacarezinho') }}" style="text-decoration: none; color: #fbbc65; font-weight: 600;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                    Jacarézinho
+                </a>
+            </div>
+            <div class="col-md-2 text-center mb-3">
+                <a href="{{ url_for('unidade_detalhe', nome='tuiuti') }}" style="text-decoration: none; color: #87ceeb; font-weight: 600;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                    Tuiuti
+                </a>
+            </div>
+            <div class="col-md-2 text-center mb-3">
+                <a href="{{ url_for('unidade_detalhe', nome='mare') }}" style="text-decoration: none; color: #3b50bd; font-weight: 600;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                    Maré
+                </a>
+            </div>
+            <div class="col-md-2 text-center mb-3">
+                <a href="{{ url_for('unidade_detalhe', nome='bancarios') }}" style="text-decoration: none; color: #1c2b38; font-weight: 600;">
+                    <i class="fas fa-map-marker-alt" style="font-size: 1.5rem; margin-bottom: 10px; display: block;"></i>
+                    Bancários
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

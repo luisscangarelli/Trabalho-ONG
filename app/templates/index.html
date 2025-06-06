@@ -1,9 +1,130 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ONG - Teste</title>
-</head>
-<body>
-    <h1>Projeto ONG funcionando!</h1>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="banner-principal">
+    <div class="banner-content">
+        <h1>CRECHE ESCOLA <span class="title-pink">NACODES</span></h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">Educação e solidariedade transformando vidas no Rio de Janeiro.</p>
+        <a href="{{ url_for('cadastro_voluntario') }}" class="btn-voluntarie">VOLUNTARIE-SE</a>
+    </div>
+</div>
+
+<div class="contador-section">
+    <div class="contador-item">
+        <strong>27</strong>
+        <span>Anos de criação</span>
+    </div>
+    <div class="contador-item">
+        <strong>+300</strong>
+        <span>Famílias auxiliadas</span>
+    </div>
+    <div class="contador-item">
+        <strong>+1500</strong>
+        <span>Alunos estudaram</span>
+    </div>
+    <div class="contador-item">
+        <strong>5</strong>
+        <span>Unidades no Rio</span>
+    </div>
+</div>
+
+<!-- Sobre Nós -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 style="font-size: 2.5rem; font-weight: 700; color: #1c2b38; margin-bottom: 25px;">Sobre Nós</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; color: #333; margin-bottom: 30px;">
+                    O Núcleo de Ação Comunitária e Desenvolvimento Social (NACODES) atua desde 1998 promovendo inclusão e cidadania em comunidades do Rio de Janeiro. Com foco na educação e qualificação, buscamos transformar vidas e fortalecer a participação social, sempre guiados por valores de respeito, solidariedade e compromisso.
+                </p>
+                <a href="{{ url_for('sobre') }}" style="background-color: #fbbc65; color: #1c1c1c; padding: 12px 25px; border: none; border-radius: 6px; font-weight: 600; font-size: 16px; cursor: pointer; font-family: 'Montserrat', sans-serif; text-decoration: none; display: inline-block;">Saiba Mais</a>
+            </div>
+            <div class="col-lg-6">
+                <div style="height: 350px; border-radius: 15px; background-image: url('{{ url_for('static', filename='images/img-sobre.jpg') }}'); background-size: cover; background-position: center;"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Carrossel de Unidades -->
+<div class="carrossel-section">
+    <h2 class="titulo-carrossel">Conheça nossas unidades</h2>
+
+    <div class="carrossel-container">
+        <button class="carrossel-btn left" onclick="scrollCarousel(-1)">‹</button>
+
+        <div class="carrossel-track" id="carrosselTrack">
+            <div class="card-unidade">
+                <img src="{{ url_for('static', filename='images/dende.jpg') }}" alt="Unidade Dendê">
+                <h4>Morro do Dendê</h4>
+                <a href="{{ url_for('unidade_detalhe', nome='dende') }}" style="background-color: #fbbc65; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; text-decoration: none; color: #1c1c1c; display: inline-block;">Saiba Mais</a>
+            </div>
+
+            <div class="card-unidade">
+                <img src="{{ url_for('static', filename='images/jacarezinho.jpg') }}" alt="Unidade Jacarezinho">
+                <h4>Jacarézinho</h4>
+                <a href="{{ url_for('unidade_detalhe', nome='jacarezinho') }}" style="background-color: #fbbc65; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; text-decoration: none; color: #1c1c1c; display: inline-block;">Saiba Mais</a>
+            </div>
+
+            <div class="card-unidade">
+                <img src="{{ url_for('static', filename='images/tuiuti.jpg') }}" alt="Unidade Tuiuti">
+                <h4>Morro do Tuiuti</h4>
+                <a href="{{ url_for('unidade_detalhe', nome='tuiuti') }}" style="background-color: #fbbc65; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; text-decoration: none; color: #1c1c1c; display: inline-block;">Saiba Mais</a>
+            </div>
+
+            <div class="card-unidade">
+                <img src="{{ url_for('static', filename='images/mare.jpg') }}" alt="Unidade Maré">
+                <h4>Maré</h4>
+                <a href="{{ url_for('unidade_detalhe', nome='mare') }}" style="background-color: #fbbc65; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; text-decoration: none; color: #1c1c1c; display: inline-block;">Saiba Mais</a>
+            </div>
+
+            <div class="card-unidade">
+                <img src="{{ url_for('static', filename='images/bancarios.jpg') }}" alt="Unidade Bancários">
+                <h4>Bancários</h4>
+                <a href="{{ url_for('unidade_detalhe', nome='bancarios') }}" style="background-color: #fbbc65; border: none; padding: 10px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; text-decoration: none; color: #1c1c1c; display: inline-block;">Saiba Mais</a>
+            </div>
+        </div>
+
+        <button class="carrossel-btn right" onclick="scrollCarousel(1)">›</button>
+    </div>
+</div>
+
+<!-- Seção Inscreva-se -->
+<section style="padding: 80px 0; background: white;">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h3 style="font-size: 2.2rem; font-weight: 700; color: #1c2b38; margin-bottom: 20px;">Inscreva-se</h3>
+                <p style="font-size: 1rem; line-height: 1.6; color: #333;">
+                    Inscreva seu filho na creche do Núcleo de Ação Comunitária e Desenvolvimento Social (NACODES).
+                    Desde 1998, promovemos educação, inclusão e cuidado com respeito e solidariedade.
+                    Garanta uma formação acolhedora e cidadã para seu filho. Faça a inscrição e transforme o futuro dele!
+                </p>
+            </div>
+            <div class="col-lg-6">
+                <form method="POST" action="{{ url_for('inscricao_rapida') }}" style="display: flex; flex-direction: column; gap: 15px; max-width: 350px;">
+                    <input type="text" name="nome" placeholder="Nome" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
+                    <input type="tel" name="telefone" placeholder="Telefone" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
+                    <input type="email" name="email" placeholder="E-mail" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
+                    <select name="unidade" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Montserrat', sans-serif;" required>
+                        <option disabled selected>Escolha a unidade</option>
+                        <option value="Dendê">Dendê</option>
+                        <option value="Jacarezinho">Jacarezinho</option>
+                        <option value="Tuiuti">Tuiuti</option>
+                        <option value="Maré">Maré</option>
+                        <option value="Bancários">Bancários</option>
+                    </select>
+                    <label style="font-size: 14px; font-family: 'Montserrat', sans-serif;">
+                        <input type="checkbox" required> Aceito os termos
+                    </label>
+                    {% if session.usuario_id %}
+                        <button type="submit" style="background-color: #fbbc65; color: #1c1c1c; padding: 12px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; font-family: 'Montserrat', sans-serif;">Inscreva-se</button>
+                    {% else %}
+                        <button type="button" onclick="window.location.href='{{ url_for('cadastro') }}'" style="background-color: #fbbc65; color: #1c1c1c; padding: 12px; font-weight: 600; border: none; border-radius: 6px; cursor: pointer; font-family: 'Montserrat', sans-serif;">Cadastre-se para se inscrever</button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

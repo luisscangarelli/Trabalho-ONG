@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="margin-top: 100px; padding: 40px 0; background: #f8f9fa; min-height: calc(100vh - 100px);">
+    <div class="container">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div style="background: linear-gradient(135deg, #DF52B0 0%, #e83e8c 100%); padding: 30px; border-radius: 15px; color: white;">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; color: white;">Gerenciar Inscrições</h1>
+                            <p style="opacity: 0.9; margin: 0;">Aprovar ou reprovar inscrições nos projetos</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <a href="{{ url_for('admin_dashboard') }}" style="background: rgba(255,255,255,0.2); color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600;">
+                                ← Voltar ao Dashboard
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estatísticas rápidas -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <h3 style="color: #ffc107; font-size: 2rem; margin-bottom: 5px;">
+                        {{ inscricoes | selectattr('status', 'equalto', 'pendente') | list | length }}
+                    </h3>
+                    <p style="color: #666; margin: 0; font-weight: 600;">Pendentes</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <h3 style="color: #28a745; font-size: 2rem; margin-bottom: 5px;">
+                        {{ inscricoes | selectattr('status', 'equalto', 'aprovada') | list | length }}
+                    </h3>
+                    <p style="color: #666; margin: 0; font-weight: 600;">Aprovadas</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <h3 style="color: #dc3545; font-size: 2rem; margin-bottom: 5px;">
+                        {{ inscricoes | selectattr('status', 'equalto', 'rejeitada') | list | length }}
+                    </h3>
+                    <p style="color: #666; margin: 0; font-weight: 600;">Rejeitadas</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center;">
+                    <h3 style="color: #1c2b38; font-size: 2rem; margin-bottom: 5px;">{{ inscricoes | length }}</h3>
+                    <p style="color: #666; margin: 0; font-weight: 600;">Total</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de Inscrições -->
+        <div class="row">
+            <div class="col-12">
+                <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h4 style="color: #1c2b38; margin-bottom: 25px;">Todas as Inscrições</h4>
+
+                    {% if inscricoes %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead style="background: #f8f9fa;">
+                                    <tr>
+                                        <th style="padding: 15px; border: none; font-weight: 600; color: #1c2b38;">Usuário</th>
+                                        <th style="padding: 15px; border: none; font-weight: 600; color: #1c2b38;">Projeto</th>
+                                        <th style="padding: 15px; border: none; font-weight: 600; color: #1c2b38;">Unidade</th>
+                                        <th style="padding: 15px; border: none; font-weight: 600; color: #1c2b38;">Data</th>
+                                        <th style="padding: 15px; border: none; font-weight: 600; color: #1c2b38;">Status</th>
+                                        <th style="padding: 15px; border: none; font-weight: 600; color: #1c2b38;">Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for inscricao in inscricoes %}
+                                    <tr style="border-bottom: 1px solid #f1f1f1;">
+                                        <td style="padding: 15px; border: none;">
+                                            <div>
+                                                <strong style="color: #1c2b38;">{{ inscricao.usuario.nome if inscricao.usuario else 'Usuário não encontrado' }}</strong>
+                                                <br>
+                                                <small style="color: #666;">{{ inscricao.usuario.email if inscricao.usuario else 'N/A' }}</small>
+                                                {% if inscricao.telefone_responsavel %}
+                                                    <br><small style="color: #666;">Tel: {{ inscricao.telefone_responsavel }}</small>
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                        <td style="padding: 15px; border: none;">
+                                            <strong style="color: #1c2b38;">{{ inscricao.projeto.nome if inscricao.projeto else 'Projeto não encontrado' }}</strong>
+                                            {% if inscricao.projeto and inscricao.projeto.idade_minima and inscricao.projeto.idade_maxima %}
+                                                <br><small style="color: #666;">{{ inscricao.projeto.idade_minima }} a {{ inscricao.projeto.idade_maxima }} anos</small>
+                                            {% endif %}
+                                        </td>
+                                        <td style="padding: 15px; border: none;">
+                                            <span style="background: #e9ecef; padding: 4px 8px; border-radius: 4px; font-size: 12px; color: #495057;">
+                                                {{ inscricao.projeto.unidade if inscricao.projeto else 'N/A' }}
+                                            </span>
+                                        </td>
+                                        <td style="padding: 15px; border: none;">
+                                            <span style="color: #666;">{{ inscricao.data_inscricao.strftime('%d/%m/%Y') if inscricao.data_inscricao else 'N/A' }}</span>
+                                            <br>
+                                            <small style="color: #999;">{{ inscricao.data_inscricao.strftime('%H:%M') if inscricao.data_inscricao else '' }}</small>
+                                        </td>
+                                        <td style="padding: 15px; border: none;">
+                                            {% if inscricao.status == 'pendente' %}
+                                                <span style="background: #ffc107; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: 600;">
+                                                    <i class="fas fa-clock" style="margin-right: 4px;"></i>Pendente
+                                                </span>
+                                            {% elif inscricao.status == 'aprovada' %}
+                                                <span style="background: #28a745; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: 600;">
+                                                    <i class="fas fa-check" style="margin-right: 4px;"></i>Aprovada
+                                                </span>
+                                            {% else %}
+                                                <span style="background: #dc3545; color: white; padding: 5px 10px; border-radius: 15px; font-size: 12px; font-weight: 600;">
+                                                    <i class="fas fa-times" style="margin-right: 4px;"></i>Rejeitada
+                                                </span>
+                                            {% endif %}
+                                        </td>
+                                        <td style="padding: 15px; border: none;">
+                                            {% if inscricao.status == 'pendente' %}
+                                                <div style="display: flex; gap: 5px;">
+                                                    <a href="{{ url_for('aprovar_inscricao', id=inscricao.id) }}"
+                                                       style="background: #28a745; color: white; padding: 6px 12px; border-radius: 4px; text-decoration: none; font-size: 12px;"
+                                                       onclick="return confirm('Aprovar esta inscrição?')">
+                                                        <i class="fas fa-check"></i>
+                                                    </a>
+                                                    <button onclick="rejeitarInscricao({{ inscricao.id }})"
+                                                            style="background: #dc3545; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 12px; cursor: pointer;">
+                                                        <i class="fas fa-times"></i>
+                                                    </button>
+                                                </div>
+                                            {% else %}
+                                                <span style="color: #999; font-size: 12px;">
+                                                    {{ inscricao.data_resposta.strftime('%d/%m/%Y') if inscricao.data_resposta else 'N/A' }}
+                                                </span>
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% if inscricao.observacoes %}
+                                    <tr style="background: #f8f9fa;">
+                                        <td colspan="6" style="padding: 10px 15px; border: none; font-style: italic; color: #666; font-size: 14px;">
+                                            <strong>Observações:</strong> {{ inscricao.observacoes }}
+                                        </td>
+                                    </tr>
+                                    {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div style="text-align: center; padding: 60px 20px;">
+                            <i class="fas fa-clipboard-list" style="font-size: 4rem; color: #ddd; margin-bottom: 20px;"></i>
+                            <h5 style="color: #666; margin-bottom: 15px;">Nenhuma inscrição encontrada</h5>
+                            <p style="color: #999;">Quando houver inscrições nos projetos, elas aparecerão aqui.</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Ações em lote -->
+        {% if inscricoes %}
+        <div class="row mt-4">
+            <div class="col-12">
+                <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                    <h5 style="color: #1c2b38; margin-bottom: 15px;">Ações Rápidas</h5>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <button onclick="aprovarTodasPendentes()" style="background: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                            <i class="fas fa-check-double" style="margin-right: 8px;"></i>Aprovar Todas Pendentes
+                        </button>
+                        <button onclick="window.location.reload()" style="background: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 6px; font-weight: 600; cursor: pointer;">
+                            <i class="fas fa-sync" style="margin-right: 8px;"></i>Atualizar Lista
+                        </button>
+                        <a href="{{ url_for('projetos') }}" style="background: #DF52B0; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; font-weight: 600;">
+                            <i class="fas fa-eye" style="margin-right: 8px;"></i>Ver Projetos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+function rejeitarInscricao(id) {
+    if (confirm('Tem certeza que deseja rejeitar esta inscrição?')) {
+        // Aqui você implementaria a rota para rejeitar
+        alert('Funcionalidade de rejeição em desenvolvimento. Por enquanto, apenas a aprovação está funcionando.');
+    }
+}
+
+function aprovarTodasPendentes() {
+    if (confirm('Deseja aprovar TODAS as inscrições pendentes? Esta ação não pode ser desfeita.')) {
+        alert('Funcionalidade em desenvolvimento. Aprove individualmente por enquanto.');
+    }
+}
+</script>
+
+{% endblock %}
