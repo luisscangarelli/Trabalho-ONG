@@ -86,7 +86,6 @@ class Inscricao(db.Model):
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuarios.id'), nullable=False)
     projeto_id = db.Column(db.Integer, db.ForeignKey('projetos.id'), nullable=False)
 
-    # Dados específicos da inscrição
     nome_responsavel = db.Column(db.String(100))  # Para menores de idade
     telefone_responsavel = db.Column(db.String(20))
     observacoes = db.Column(db.Text)

@@ -16,7 +16,7 @@ db.init_app(app)
 
 @app.route('/')
 def index():
-    """Página inicial - vai usar template do seu colega"""
+    """Página inicial -  kevin"""
     # Buscar alguns dados para exibir na home
     projetos_ativos = Projeto.query.filter_by(status='ativo').limit(3).all()
     eventos_proximos = Evento.query.filter(
@@ -29,7 +29,7 @@ def index():
                            eventos=eventos_proximos)
 
 
-# === NOVAS ROTAS PARA NAVEGAÇÃO ===
+# === NOVAS ROTAS  ===
 
 @app.route('/sobre')
 def sobre():
