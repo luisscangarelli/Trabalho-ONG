@@ -46,36 +46,6 @@ ONG fundada em 1998 que atua em comunidades do Rio de Janeiro promovendo inclus�
 **Camada de Lógica**: Python Flask  
 **Camada de Dados**: MySQL  
 
-## 🔧 Como Executar Localmente
-
-### Pré-requisitos
-- Python 3.x
-- MySQL
-- XAMPP (opcional)
-
-### Instalação
-1. Clone o repositório
-```bash
-git clone [url-do-repositorio]
-cd nacodes-website
-```
-
-2. Instale as dependências
-```bash
-pip install -r requirements.txt
-```
-
-3. Configure o banco de dados
-- Importe o arquivo `docs/database/nacodes_db.sql`
-- Ajuste as credenciais no arquivo de configuração
-
-4. Execute o projeto
-```bash
-python app.py
-```
-
-5. Acesse `http://localhost:5000`
-
 ## 📁 Estrutura do Projeto
 ```
 nacodes-website/
