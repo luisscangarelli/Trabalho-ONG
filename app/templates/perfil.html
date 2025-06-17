@@ -280,13 +280,13 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', function(e) {
             e.preventDefault();
 
-            // Remove active class from all links
+        
             links.forEach(l => {
                 l.style.color = '#666';
                 l.style.borderBottom = 'none';
             });
 
-            // Add active class to clicked link
+           
             this.style.color = '#DF52B0';
             this.style.borderBottom = '2px solid #DF52B0';
 
