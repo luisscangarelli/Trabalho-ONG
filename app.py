@@ -17,7 +17,6 @@ db.init_app(app)
 @app.route('/')
 def index():
     """Página inicial -  kevin"""
-    # Buscar alguns dados para exibir na home
     projetos_ativos = Projeto.query.filter_by(status='ativo').limit(3).all()
     eventos_proximos = Evento.query.filter(
         Evento.data_evento >= datetime.now(),
